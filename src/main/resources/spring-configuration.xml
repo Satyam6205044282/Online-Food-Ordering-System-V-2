@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+ https://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+ https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- bean definitions here -->
+
+<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="dataSource">
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://localhost:3306/food_db"/>
+<property name="username" value="root"/>
+<property name="password" value="Satyam@123"/>
+</bean>
+
+
+<bean class="com.satyamcompany.app.dao.CustomerDaoSpringJdbcImpl" name="customerDao">
+	<property name="jdbcTemplate" ref="dataSource"/>
+</bean>
+
+<bean class="com.satyamcompany.app.service.CustomerServiceImpl" name="customerService">
+	<property name="customerDao" ref="customerDao"/>
+</bean>
+
+
+
+
+<bean class="com.satyamcompany.app.dao.MenuDaoSpringJdbcImpl" name="menuDao">
+	<property name="jdbcTemplate" ref="dataSource"/>
+</bean>
+
+<bean class="com.satyamcompany.app.service.MenuServiceImpl" name="menuService">
+	<property name="menuDao" ref="menuDao"/>
+</bean>
+
+
+
+
+<bean class="com.satyamcompany.app.dao.MenuTypeDaoSpringJdbcImpl" name="menuTypeDao">
+	<property name="jdbcTemplate" ref="dataSource"/>
+</bean>
+
+<bean class="com.satyamcompany.app.service.MenuTypeServiceImpl" name="menuTypeService">
+	<property name="menuTypeDao" ref="menuTypeDao"/>
+</bean>
+
+
+
+
+<bean class="com.satyamcompany.app.dao.CartDaoSpringJdbcImpl" name="cartDao">
+	<property name="jdbcTemplate" ref="dataSource"/>
+</bean>
+
+<bean class="com.satyamcompany.app.service.CartServiceImpl" name="cartService">
+	<property name="cartDao" ref="cartDao"/>
+</bean>
+
+
+</beans>
+
